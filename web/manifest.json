@@ -1,11 +1,11 @@
 {
-    "name": "self_improvement_app",
-    "short_name": "self_improvement_app",
+    "name": "Truck Stop 1 LTE ERP",
+    "short_name": "Truck Stop ERP",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
     "theme_color": "#0175C2",
-    "description": "A new Flutter project.",
+    "description": "Truck Stop 1 LTE ERP operations system.",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [

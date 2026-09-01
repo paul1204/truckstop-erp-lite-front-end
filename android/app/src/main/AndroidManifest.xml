@@ -1,6 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
     <application
-        android:label="self_improvement_app"
+        android:label="Truck Stop 1 LTE ERP"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
