@@ -73,7 +73,7 @@ class _TruckStopAppState extends State<TruckStopApp> {
         }
 
         return MaterialApp(
-          title: 'Truck Stop 1 LTE ERP',
+          title: 'Truck Stop LTE ERP Store 1',
           debugShowCheckedModeBanner: false,
           themeMode: themeMode,
           theme: ThemeData(
@@ -295,7 +295,7 @@ class _AppShellState extends State<AppShell> {
                     const Icon(Icons.local_shipping, color: Colors.tealAccent, size: 24),
                     const SizedBox(width: 8),
                     Text(
-                      'Truck Stop 1 LTE ERP',
+                      'Truck Stop LTE ERP Store 1',
                       style: TextStyle(
                         fontFamily: tokens.serifFont,
                         fontWeight: FontWeight.bold,
@@ -410,7 +410,7 @@ class _AppShellState extends State<AppShell> {
                 ),
                 const SizedBox(height: 6),
                 Text(
-                  'Copyright © 2014, 2026 Truck Stop 1 LTE ERP and/or its affiliates. All rights reserved.',
+                  'Copyright © 2014, 2026 Truck Stop LTE ERP Store 1 and/or its affiliates. All rights reserved.',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontFamily: tokens.sansFont,

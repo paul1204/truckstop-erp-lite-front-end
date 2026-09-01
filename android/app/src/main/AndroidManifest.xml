@@ -1,6 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
     <application
-        android:label="Truck Stop 1 LTE ERP"
+        android:label="Truck Stop ERP LITE - Store 1"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

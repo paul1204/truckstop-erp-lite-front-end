@@ -1,11 +1,11 @@
 {
-    "name": "Truck Stop 1 LTE ERP",
+    "name": "Truck Stop LTE ERP Store 1",
     "short_name": "Truck Stop ERP",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
     "theme_color": "#0175C2",
-    "description": "Truck Stop 1 LTE ERP operations system.",
+    "description": "Truck Stop LTE ERP Store 1 operations system.",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [

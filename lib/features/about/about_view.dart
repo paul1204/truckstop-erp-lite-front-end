@@ -30,7 +30,7 @@ class AboutView extends StatelessWidget {
           ),
           const SizedBox(height: 24),
           Text(
-            'Truck Stop 1 LTE ERP version 2.0. Built with Flutter for multi-platform web and mobile execution.',
+            'Truck Stop LTE ERP Store 1 version 2.0. Built with Flutter for multi-platform web and mobile execution.',
             style: TextStyle(
               fontFamily: tokens.sansFont,
               fontSize: 16,
