@@ -35,6 +35,7 @@ import 'package:self_improvement_app/features/about/about_view.dart';
 import 'package:self_improvement_app/features/sales/sales_view.dart';
 import 'package:self_improvement_app/features/settings/theme_notifier.dart';
 import 'package:self_improvement_app/features/settings/settings_view.dart';
+import 'package:self_improvement_app/features/hero_preview/hero_preview_view.dart';
 
 void main() {
   runApp(const TruckStopApp());
@@ -150,6 +151,7 @@ class _AppShellState extends State<AppShell> {
     {'name': 'Showers', 'icon': '🚿'},
     {'name': 'Showers V2', 'icon': '🧼'},
     {'name': 'About', 'icon': 'ℹ️'},
+    {'name': 'Hero Preview', 'icon': '🌟'},
     {'name': 'Bliss', 'icon': '✨'},
     {'name': 'Settings', 'icon': '⚙️'},
   ];
@@ -254,6 +256,11 @@ class _AppShellState extends State<AppShell> {
         return ShowersViewV2(notifier: widget.showersNotifier, tokens: tokens);
       case 'About':
         return AboutView(tokens: tokens);
+      case 'Hero Preview':
+        return HeroPreviewView(
+          tokens: tokens,
+          onNavigateToApp: () => _selectTab('Dashboard'),
+        );
       case 'Bliss':
         return const SizedBox.shrink();
       case 'Settings':
@@ -290,21 +297,27 @@ class _AppShellState extends State<AppShell> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 // Header Logo
-                Row(
-                  children: [
-                    const Icon(Icons.local_shipping, color: Colors.tealAccent, size: 24),
-                    const SizedBox(width: 8),
-                    Text(
-                      'Truck Stop LTE ERP Store 1',
-                      style: TextStyle(
-                        fontFamily: tokens.serifFont,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 18,
-                        color: tokens.headerText,
-                        letterSpacing: 0.5,
+                Flexible(
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      const Icon(Icons.local_shipping, color: Colors.tealAccent, size: 24),
+                      const SizedBox(width: 8),
+                      Flexible(
+                        child: Text(
+                          'Truck Stop LTE ERP Store 1',
+                          overflow: TextOverflow.ellipsis,
+                          style: TextStyle(
+                            fontFamily: tokens.serifFont,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 18,
+                            color: tokens.headerText,
+                            letterSpacing: 0.5,
+                          ),
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
                 // Profile Switcher dropdown
                 ProfileSwitcher(

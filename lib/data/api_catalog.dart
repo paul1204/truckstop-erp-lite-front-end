@@ -2,7 +2,9 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 class ApiCatalog {
-  static const String baseUrl = 'http://localhost:9000';
+  // Uses relative paths (e.g. '') for web reverse proxy by default.
+  // Can be overridden for local non-Docker development: --dart-define=API_BASE_URL=http://localhost:9000
+  static const String baseUrl = String.fromEnvironment('API_BASE_URL', defaultValue: '');
   static const String tankStatusUrl = 'http://127.0.0.1:5000'; // Tank status sensor microservice
 
   // Central client instance

@@ -50,12 +50,23 @@ To run the web app on a local development server:
 
 ```bash
 flutter run -d web-server --web-port=8600 --web-hostname=0.0.0.0
+
+flutter run -d web-server --web-port=8600 --web-hostname=0.0.0.0 --dart-define=API_BASE_URL=http://localhost:9000
 ```
 
 Or run directly in Chrome:
 
 ```bash
-flutter run -d chrome
+flutter run -d chrome 
+
+flutter run -d chrome --dart-define=API_BASE_URL=http://localhost:9000
+```
+Recompile and Rebuild Docker 
+```bash
+flutter build web
+docker build -t truckstop-frontend .
+docker stop $(docker ps -q --filter ancestor=truckstop-frontend) 2>/dev/null
+docker run -d -p 8600:80 truckstop-frontend
 ```
 
 ## Project Structure

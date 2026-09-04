@@ -15,6 +15,6 @@ void main() {
     await tester.pumpWidget(const TruckStopApp());
 
     // Verify that our app name exists on the header.
-    expect(find.text('Truck Stop 1 LTE ERP'), findsOneWidget);
+    expect(find.text('Truck Stop LTE ERP Store 1'), findsOneWidget);
   });
 }

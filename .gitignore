@@ -43,3 +43,7 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+
+# Local architecture & deployment reference notes
+DEPLOYMENT_AND_ARCHITECTURE.md
+

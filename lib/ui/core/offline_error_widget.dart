@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:self_improvement_app/ui/core/style_tokens.dart';
+import 'package:self_improvement_app/data/api_catalog.dart';
 
 class OfflineErrorWidget extends StatelessWidget {
   final StyleTokens tokens;
@@ -102,7 +103,7 @@ class OfflineErrorWidget extends StatelessWidget {
                   ),
                   const SizedBox(height: 2),
                   Text(
-                    'http://localhost:9000',
+                    ApiCatalog.baseUrl.isEmpty ? 'Backend Service (Same Origin)' : ApiCatalog.baseUrl,
                     style: TextStyle(
                       fontFamily: tokens.monoFont,
                       fontSize: 13,

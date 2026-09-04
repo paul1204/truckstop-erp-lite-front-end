@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:self_improvement_app/ui/core/style_tokens.dart';
 import 'package:self_improvement_app/features/settings/theme_notifier.dart';
+import 'package:self_improvement_app/data/api_catalog.dart';
 
 class SettingsView extends StatefulWidget {
   final StyleTokens tokens;
@@ -296,7 +297,7 @@ class _SettingsViewState extends State<SettingsView> {
           ),
           const SizedBox(height: 16),
           _buildInfoRow('ERP Version', '1.0.0-LITE (Build 2026.08.04)', tokens),
-          _buildInfoRow('Primary ERP Host', 'http://localhost:9000', tokens),
+          _buildInfoRow('Primary ERP Host', ApiCatalog.baseUrl.isEmpty ? 'Same Origin (Reverse Proxy)' : ApiCatalog.baseUrl, tokens),
           _buildInfoRow('Microservice Sensors Port', 'http://127.0.0.1:5000', tokens),
           _buildInfoRow('Active API Integration', 'GET /api/sales/by-shift/{date}', tokens),
           _buildInfoRow('Platform OS Version', 'macOS (Darwin-x64)', tokens),
