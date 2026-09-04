@@ -29,9 +29,9 @@ jobs:
       - name: Install dependencies
         run: flutter pub get
 
-      # Step 4: Compile Flutter Web for production
+      # Step 4: Compile Flutter Web for production (disable PWA service worker caching)
       - name: Build Flutter Web
-        run: flutter build web --release
+        run: flutter build web --release --pwa-strategy=none
 
       # Step 5: Save static web build as a downloadable GitHub Artifact
       - name: Upload Web Build Artifact
