@@ -1,6 +1,6 @@
 import 'dart:math' as math;
 import 'package:flutter/material.dart';
-import 'package:self_improvement_app/ui/core/style_tokens.dart';
+import 'package:truck_stop_erp_lite_front_end/ui/core/style_tokens.dart';
 
 /// Painter for drawing the stipple (dot grid) pattern on the background.
 class StippleGridPainter extends CustomPainter {

@@ -1,7 +1,7 @@
 import 'dart:math' as math;
 import 'package:flutter/material.dart';
-import 'package:self_improvement_app/ui/core/style_tokens.dart';
-import 'package:self_improvement_app/features/showers/showers_notifier.dart';
+import 'package:truck_stop_erp_lite_front_end/ui/core/style_tokens.dart';
+import 'package:truck_stop_erp_lite_front_end/features/showers/showers_notifier.dart';
 
 class ShowerStallWidget extends StatefulWidget {
   final ShowerUnit shower;

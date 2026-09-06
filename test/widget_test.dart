@@ -7,7 +7,7 @@
 
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:self_improvement_app/main.dart';
+import 'package:truck_stop_erp_lite_front_end/main.dart';
 
 void main() {
   testWidgets('Truck Stop App loads successfully', (WidgetTester tester) async {

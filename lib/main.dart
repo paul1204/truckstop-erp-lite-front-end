@@ -1,41 +1,41 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:self_improvement_app/ui/core/style_tokens.dart';
-import 'package:self_improvement_app/ui/core/background_effects.dart';
+import 'package:truck_stop_erp_lite_front_end/ui/core/style_tokens.dart';
+import 'package:truck_stop_erp_lite_front_end/ui/core/background_effects.dart';
 
 // Import Feature views and state notifiers
-import 'package:self_improvement_app/features/profile_switcher/profile_switcher_notifier.dart';
-import 'package:self_improvement_app/features/profile_switcher/profile_switcher_view.dart';
+import 'package:truck_stop_erp_lite_front_end/features/profile_switcher/profile_switcher_notifier.dart';
+import 'package:truck_stop_erp_lite_front_end/features/profile_switcher/profile_switcher_view.dart';
 
-import 'package:self_improvement_app/features/dashboard/dashboard_notifier.dart';
-import 'package:self_improvement_app/features/dashboard/dashboard_view.dart';
+import 'package:truck_stop_erp_lite_front_end/features/dashboard/dashboard_notifier.dart';
+import 'package:truck_stop_erp_lite_front_end/features/dashboard/dashboard_view.dart';
 
-import 'package:self_improvement_app/features/fuel_inventory/fuel_inventory_notifier.dart';
-import 'package:self_improvement_app/features/fuel_inventory/fuel_inventory_view.dart';
+import 'package:truck_stop_erp_lite_front_end/features/fuel_inventory/fuel_inventory_notifier.dart';
+import 'package:truck_stop_erp_lite_front_end/features/fuel_inventory/fuel_inventory_view.dart';
 
-import 'package:self_improvement_app/features/blackjack/blackjack_notifier.dart';
-import 'package:self_improvement_app/features/blackjack/blackjack_view.dart';
+import 'package:truck_stop_erp_lite_front_end/features/blackjack/blackjack_notifier.dart';
+import 'package:truck_stop_erp_lite_front_end/features/blackjack/blackjack_view.dart';
 
-import 'package:self_improvement_app/features/inventory/inventory_notifier.dart';
-import 'package:self_improvement_app/features/inventory/inventory_view.dart';
+import 'package:truck_stop_erp_lite_front_end/features/inventory/inventory_notifier.dart';
+import 'package:truck_stop_erp_lite_front_end/features/inventory/inventory_view.dart';
 
-import 'package:self_improvement_app/features/house_accounts/house_accounts_notifier.dart';
-import 'package:self_improvement_app/features/house_accounts/house_accounts_view.dart';
-import 'package:self_improvement_app/features/house_accounts/house_accounts_view_v2.dart';
+import 'package:truck_stop_erp_lite_front_end/features/house_accounts/house_accounts_notifier.dart';
+import 'package:truck_stop_erp_lite_front_end/features/house_accounts/house_accounts_view.dart';
+import 'package:truck_stop_erp_lite_front_end/features/house_accounts/house_accounts_view_v2.dart';
 
-import 'package:self_improvement_app/features/parking/parking_notifier.dart';
-import 'package:self_improvement_app/features/parking/parking_view.dart';
-import 'package:self_improvement_app/features/parking/parking_view_v2.dart';
+import 'package:truck_stop_erp_lite_front_end/features/parking/parking_notifier.dart';
+import 'package:truck_stop_erp_lite_front_end/features/parking/parking_view.dart';
+import 'package:truck_stop_erp_lite_front_end/features/parking/parking_view_v2.dart';
 
-import 'package:self_improvement_app/features/showers/showers_notifier.dart';
-import 'package:self_improvement_app/features/showers/showers_view.dart';
-import 'package:self_improvement_app/features/showers/showers_view_v2.dart';
+import 'package:truck_stop_erp_lite_front_end/features/showers/showers_notifier.dart';
+import 'package:truck_stop_erp_lite_front_end/features/showers/showers_view.dart';
+import 'package:truck_stop_erp_lite_front_end/features/showers/showers_view_v2.dart';
 
-import 'package:self_improvement_app/features/about/about_view.dart';
-import 'package:self_improvement_app/features/sales/sales_view.dart';
-import 'package:self_improvement_app/features/settings/theme_notifier.dart';
-import 'package:self_improvement_app/features/settings/settings_view.dart';
-import 'package:self_improvement_app/features/hero_preview/hero_preview_view.dart';
+import 'package:truck_stop_erp_lite_front_end/features/about/about_view.dart';
+import 'package:truck_stop_erp_lite_front_end/features/sales/sales_view.dart';
+import 'package:truck_stop_erp_lite_front_end/features/settings/theme_notifier.dart';
+import 'package:truck_stop_erp_lite_front_end/features/settings/settings_view.dart';
+import 'package:truck_stop_erp_lite_front_end/features/hero_preview/hero_preview_view.dart';
 
 void main() {
   runApp(const TruckStopApp());

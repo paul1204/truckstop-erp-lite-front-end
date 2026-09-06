@@ -1,10 +1,10 @@
 import 'dart:typed_data';
 import 'package:flutter/material.dart';
-import 'package:self_improvement_app/ui/core/style_tokens.dart';
-import 'package:self_improvement_app/features/inventory/inventory_notifier.dart';
-import 'package:self_improvement_app/features/inventory/inventory_styles.dart';
-import 'package:self_improvement_app/features/inventory/widgets/gauge_circular.dart';
-import 'package:self_improvement_app/ui/core/offline_error_widget.dart';
+import 'package:truck_stop_erp_lite_front_end/ui/core/style_tokens.dart';
+import 'package:truck_stop_erp_lite_front_end/features/inventory/inventory_notifier.dart';
+import 'package:truck_stop_erp_lite_front_end/features/inventory/inventory_styles.dart';
+import 'package:truck_stop_erp_lite_front_end/features/inventory/widgets/gauge_circular.dart';
+import 'package:truck_stop_erp_lite_front_end/ui/core/offline_error_widget.dart';
 
 // 1px transparent PNG bytes for smooth image fade-in placeholder
 final Uint8List kTransparentImage = Uint8List.fromList([

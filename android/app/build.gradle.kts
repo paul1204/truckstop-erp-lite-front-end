@@ -5,7 +5,7 @@ plugins {
 }
 
 android {
-    namespace = "com.truckstopfrontend.self_improvement_app"
+    namespace = "com.truckstopfrontend.truck_stop_erp_lite_front_end"
     compileSdk = flutter.compileSdkVersion
     ndkVersion = flutter.ndkVersion
 
@@ -16,7 +16,7 @@ android {
 
     defaultConfig {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
-        applicationId = "com.truckstopfrontend.self_improvement_app"
+        applicationId = "com.truckstopfrontend.truck_stop_erp_lite_front_end"
         // You can update the following values to match your application needs.
         // For more information, see: https://flutter.dev/to/review-gradle-config.
         minSdk = flutter.minSdkVersion

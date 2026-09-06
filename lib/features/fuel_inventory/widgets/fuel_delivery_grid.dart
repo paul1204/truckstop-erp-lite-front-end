@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:self_improvement_app/ui/core/style_tokens.dart';
-import 'package:self_improvement_app/features/fuel_inventory/fuel_inventory_notifier.dart';
-import 'package:self_improvement_app/features/fuel_inventory/fuel_inventory_styles.dart';
+import 'package:truck_stop_erp_lite_front_end/ui/core/style_tokens.dart';
+import 'package:truck_stop_erp_lite_front_end/features/fuel_inventory/fuel_inventory_notifier.dart';
+import 'package:truck_stop_erp_lite_front_end/features/fuel_inventory/fuel_inventory_styles.dart';
 
 class FuelDeliveryGrid extends StatefulWidget {
   final FuelInventoryNotifier notifier;

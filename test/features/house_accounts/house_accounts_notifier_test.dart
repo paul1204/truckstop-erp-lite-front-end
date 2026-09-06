@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:self_improvement_app/features/house_accounts/house_accounts_notifier.dart';
+import 'package:truck_stop_erp_lite_front_end/features/house_accounts/house_accounts_notifier.dart';
 
 void main() {
   group('HouseAccountsNotifier Unit Tests', () {

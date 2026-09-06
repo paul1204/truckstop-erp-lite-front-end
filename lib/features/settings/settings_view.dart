@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:self_improvement_app/ui/core/style_tokens.dart';
-import 'package:self_improvement_app/features/settings/theme_notifier.dart';
-import 'package:self_improvement_app/data/api_catalog.dart';
+import 'package:truck_stop_erp_lite_front_end/ui/core/style_tokens.dart';
+import 'package:truck_stop_erp_lite_front_end/features/settings/theme_notifier.dart';
+import 'package:truck_stop_erp_lite_front_end/data/api_catalog.dart';
 
 class SettingsView extends StatefulWidget {
   final StyleTokens tokens;

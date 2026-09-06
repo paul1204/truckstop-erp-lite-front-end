@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:self_improvement_app/data/api_catalog.dart';
+import 'package:truck_stop_erp_lite_front_end/data/api_catalog.dart';
 
 class ParkingSpot {
   final int id;

@@ -1,10 +1,10 @@
 import 'dart:math' as math;
 import 'package:flutter/material.dart';
-import 'package:self_improvement_app/ui/core/style_tokens.dart';
-import 'package:self_improvement_app/features/showers/showers_notifier.dart';
-import 'package:self_improvement_app/features/showers/showers_styles.dart';
-import 'package:self_improvement_app/ui/core/offline_error_widget.dart';
-import 'package:self_improvement_app/features/showers/widgets/shower_stall_widget.dart';
+import 'package:truck_stop_erp_lite_front_end/ui/core/style_tokens.dart';
+import 'package:truck_stop_erp_lite_front_end/features/showers/showers_notifier.dart';
+import 'package:truck_stop_erp_lite_front_end/features/showers/showers_styles.dart';
+import 'package:truck_stop_erp_lite_front_end/ui/core/offline_error_widget.dart';
+import 'package:truck_stop_erp_lite_front_end/features/showers/widgets/shower_stall_widget.dart';
 
 class ShowersViewV2 extends StatefulWidget {
   final ShowersNotifier notifier;

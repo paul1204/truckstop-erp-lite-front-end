@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:self_improvement_app/ui/core/style_tokens.dart';
-import 'package:self_improvement_app/features/house_accounts/house_accounts_notifier.dart';
-import 'package:self_improvement_app/features/house_accounts/house_accounts_styles.dart';
-import 'package:self_improvement_app/ui/core/offline_error_widget.dart';
-import 'package:self_improvement_app/features/house_accounts/widgets/add_house_account_dialog.dart';
-import 'package:self_improvement_app/features/house_accounts/widgets/clipboard_card.dart';
-import 'package:self_improvement_app/features/house_accounts/widgets/mail_organizer_widget.dart';
+import 'package:truck_stop_erp_lite_front_end/ui/core/style_tokens.dart';
+import 'package:truck_stop_erp_lite_front_end/features/house_accounts/house_accounts_notifier.dart';
+import 'package:truck_stop_erp_lite_front_end/features/house_accounts/house_accounts_styles.dart';
+import 'package:truck_stop_erp_lite_front_end/ui/core/offline_error_widget.dart';
+import 'package:truck_stop_erp_lite_front_end/features/house_accounts/widgets/add_house_account_dialog.dart';
+import 'package:truck_stop_erp_lite_front_end/features/house_accounts/widgets/clipboard_card.dart';
+import 'package:truck_stop_erp_lite_front_end/features/house_accounts/widgets/mail_organizer_widget.dart';
 
 class HouseAccountsViewV2 extends StatefulWidget {
   final HouseAccountsNotifier notifier;

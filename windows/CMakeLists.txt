@@ -1,10 +1,10 @@
 # Project-level configuration.
 cmake_minimum_required(VERSION 3.14)
-project(self_improvement_app LANGUAGES CXX)
+project(truck_stop_erp_lite_front_end LANGUAGES CXX)
 
 # The name of the executable created for the application. Change this to change
 # the on-disk name of your application.
-set(BINARY_NAME "self_improvement_app")
+set(BINARY_NAME "truck_stop_erp_lite_front_end")
 
 # Explicitly opt in to modern CMake behaviors to avoid warnings with recent
 # versions of CMake.

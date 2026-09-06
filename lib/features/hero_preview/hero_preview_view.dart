@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:self_improvement_app/features/hero_preview/variants/hero_variant_1.dart';
-import 'package:self_improvement_app/features/hero_preview/variants/hero_variant_2.dart';
-import 'package:self_improvement_app/features/hero_preview/variants/hero_variant_3.dart';
-import 'package:self_improvement_app/ui/core/style_tokens.dart';
+import 'package:truck_stop_erp_lite_front_end/features/hero_preview/variants/hero_variant_1.dart';
+import 'package:truck_stop_erp_lite_front_end/features/hero_preview/variants/hero_variant_2.dart';
+import 'package:truck_stop_erp_lite_front_end/features/hero_preview/variants/hero_variant_3.dart';
+import 'package:truck_stop_erp_lite_front_end/ui/core/style_tokens.dart';
 
 /// Modular preview container allowing side-by-side evaluation of 3 Hero+Login concepts.
 class HeroPreviewView extends StatefulWidget {

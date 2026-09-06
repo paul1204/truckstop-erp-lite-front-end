@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:self_improvement_app/features/hero_preview/widgets/login_form_widget.dart';
-import 'package:self_improvement_app/ui/core/style_tokens.dart';
+import 'package:truck_stop_erp_lite_front_end/features/hero_preview/widgets/login_form_widget.dart';
+import 'package:truck_stop_erp_lite_front_end/ui/core/style_tokens.dart';
 
 /// Variant 2: Route 66 Americana (Classic Highway Oasis & Diner Heritage)
 class HeroVariant2 extends StatelessWidget {

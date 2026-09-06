@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:self_improvement_app/features/hero_preview/hero_preview_view.dart';
-import 'package:self_improvement_app/features/hero_preview/variants/hero_variant_1.dart';
-import 'package:self_improvement_app/features/hero_preview/variants/hero_variant_2.dart';
-import 'package:self_improvement_app/features/hero_preview/variants/hero_variant_3.dart';
-import 'package:self_improvement_app/features/hero_preview/widgets/login_form_widget.dart';
-import 'package:self_improvement_app/ui/core/style_tokens.dart';
+import 'package:truck_stop_erp_lite_front_end/features/hero_preview/hero_preview_view.dart';
+import 'package:truck_stop_erp_lite_front_end/features/hero_preview/variants/hero_variant_1.dart';
+import 'package:truck_stop_erp_lite_front_end/features/hero_preview/variants/hero_variant_2.dart';
+import 'package:truck_stop_erp_lite_front_end/features/hero_preview/variants/hero_variant_3.dart';
+import 'package:truck_stop_erp_lite_front_end/features/hero_preview/widgets/login_form_widget.dart';
+import 'package:truck_stop_erp_lite_front_end/ui/core/style_tokens.dart';
 
 void main() {
   final tokens = StyleTokens(
