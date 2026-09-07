@@ -176,7 +176,7 @@ class FuelInventoryNotifier extends ChangeNotifier {
     }
   }
 
-  Future<bool> postDelivery(
+  Future<(bool, String?)> postDelivery(
     String company,
     String deliveryId,
     String date,
@@ -211,12 +211,12 @@ class FuelInventoryNotifier extends ChangeNotifier {
       };
     });
 
-    final success = await ApiCatalog.postFuelDelivery(payload);
+    final (success, errorMsg) = await ApiCatalog.postFuelDelivery(payload);
     if (success) {
       // Reload lists
       await fetchInventory();
       await fetchDeliveries(_deliveryCount);
     }
-    return success;
+    return (success, errorMsg);
   }
 }

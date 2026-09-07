@@ -116,7 +116,7 @@ class _FuelInventoryViewState extends State<FuelInventoryView> {
       orders[fuel.key] = {'gallons': gals, 'price': prc};
     }
 
-    final success = await widget.notifier.postDelivery(
+    final (success, errorMsg) = await widget.notifier.postDelivery(
       _companyController.text,
       _deliveryIdController.text,
       _dateController.text,
@@ -139,7 +139,7 @@ class _FuelInventoryViewState extends State<FuelInventoryView> {
           _priceControllers[fuel.key]?.text = fuel.defaultPrice;
         }
       } else {
-        _statusMessage = 'Failed to post delivery: Backend service is unavailable.';
+        _statusMessage = errorMsg ?? 'Failed to post delivery: Backend service is unavailable.';
       }
     });
 

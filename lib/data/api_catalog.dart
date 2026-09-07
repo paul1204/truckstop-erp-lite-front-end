@@ -46,20 +46,25 @@ class ApiCatalog {
 
   /// 3. Update Fuel Delivery Endpoint
   /// POST /fuel/update/FuelInventory/FuelDelivery
-  static Future<bool> postFuelDelivery(Map<String, dynamic> payload) async {
+  static Future<(bool, String?)> postFuelDelivery(Map<String, dynamic> payload) async {
     try {
+      print('ApiCatalog: Posting fuel delivery payload: ${json.encode(payload)}');
       final response = await _client.post(
         Uri.parse('$baseUrl/fuel/update/FuelInventory/FuelDelivery'),
         headers: {'Content-Type': 'application/json'},
         body: json.encode(payload),
       ).timeout(const Duration(seconds: 4));
+      print('ApiCatalog: postFuelDelivery status: ${response.statusCode}, body: ${response.body}');
       if (response.statusCode == 200 || response.statusCode == 201) {
-        return true;
+        return (true, null);
       }
-      throw Exception('Failed to post fuel delivery: ${response.statusCode}');
+      final errorMsg = response.body.isNotEmpty
+          ? 'Server ${response.statusCode}: ${response.body}'
+          : 'Server returned HTTP ${response.statusCode}';
+      return (false, errorMsg);
     } catch (e) {
       print('ApiCatalog: Failed to post fuel delivery: $e');
-      return false;
+      return (false, 'Request failed: $e');
     }
   }
 
