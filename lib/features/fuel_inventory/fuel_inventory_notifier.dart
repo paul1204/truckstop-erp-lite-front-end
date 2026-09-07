@@ -189,14 +189,23 @@ class FuelInventoryNotifier extends ChangeNotifier {
     };
 
     orders.forEach((fuelName, valueMap) {
-      final key = fuelName.toLowerCase().contains('diesel') ? 'dieselOrder' : 
-                  fuelName.toLowerCase().contains('regular') ? 'regularOctaneOrder' :
-                  fuelName.toLowerCase().contains('premium') ? 'premiumOctaneOrder' : 
-                  '${fuelName.replaceAll(" ", "")}Order';
-      
+      final lower = fuelName.toLowerCase();
+      final key = lower.contains('premium') || lower.contains('93')
+          ? 'premiumOctaneOrder'
+          : lower.contains('regular') || lower.contains('87')
+              ? 'regularOctaneOrder'
+              : lower.contains('diesel')
+                  ? 'dieselOrder'
+                  : '${fuelName.replaceAll(" ", "")}Order';
+
+      final octane = lower.contains('premium') || lower.contains('93')
+          ? 93
+          : lower.contains('regular') || lower.contains('87')
+              ? 87
+              : 0;
+
       payload[key] = {
-        "octane": fuelName.toLowerCase().contains('regular') ? 87 : 
-                  fuelName.toLowerCase().contains('premium') ? 93 : 0,
+        "octane": octane,
         "pricePerGallon": valueMap['price'] ?? 0.0,
         "totalGallons": valueMap['gallons'] ?? 0.0,
       };

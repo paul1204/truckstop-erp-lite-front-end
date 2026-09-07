@@ -5,6 +5,20 @@ import 'package:truck_stop_erp_lite_front_end/features/fuel_inventory/fuel_inven
 import 'package:truck_stop_erp_lite_front_end/features/fuel_inventory/widgets/tank_gauge.dart';
 import 'package:truck_stop_erp_lite_front_end/features/fuel_inventory/widgets/fuel_delivery_grid.dart';
 
+class FuelProductConfig {
+  final String key;
+  final String displayName;
+  final String defaultGallons;
+  final String defaultPrice;
+
+  const FuelProductConfig({
+    required this.key,
+    required this.displayName,
+    required this.defaultGallons,
+    required this.defaultPrice,
+  });
+}
+
 class FuelInventoryView extends StatefulWidget {
   final FuelInventoryNotifier notifier;
   final StyleTokens tokens;
@@ -29,10 +43,39 @@ class _FuelInventoryViewState extends State<FuelInventoryView> {
   final Map<String, TextEditingController> _gallonsControllers = {};
   final Map<String, TextEditingController> _priceControllers = {};
 
+  bool _isSubmitting = false;
+  String? _statusMessage;
+  bool _isSuccess = false;
+
+  static const List<FuelProductConfig> _standardFuels = [
+    FuelProductConfig(
+      key: 'Diesel',
+      displayName: 'Diesel',
+      defaultGallons: '345',
+      defaultPrice: '3.49',
+    ),
+    FuelProductConfig(
+      key: 'Regular Unleaded (87)',
+      displayName: 'Regular Unleaded (87)',
+      defaultGallons: '1000',
+      defaultPrice: '3.49',
+    ),
+    FuelProductConfig(
+      key: 'Premium Unleaded (93)',
+      displayName: 'Premium Unleaded (93)',
+      defaultGallons: '123',
+      defaultPrice: '2.59',
+    ),
+  ];
+
   @override
   void initState() {
     super.initState();
     _dateController.text = DateTime.now().toString().substring(0, 10);
+    for (final fuel in _standardFuels) {
+      _gallonsControllers[fuel.key] = TextEditingController(text: fuel.defaultGallons);
+      _priceControllers[fuel.key] = TextEditingController(text: fuel.defaultPrice);
+    }
   }
 
   @override
@@ -40,68 +83,78 @@ class _FuelInventoryViewState extends State<FuelInventoryView> {
     _companyController.dispose();
     _deliveryIdController.dispose();
     _dateController.dispose();
-    _gallonsControllers.values.forEach((c) => c.dispose());
-    _priceControllers.values.forEach((c) => c.dispose());
+    for (final c in _gallonsControllers.values) {
+      c.dispose();
+    }
+    for (final c in _priceControllers.values) {
+      c.dispose();
+    }
     super.dispose();
   }
 
-  static const Map<String, String> _defaultGallons = {
-    '93': '123',
-    'Diesel': '345',
-    '87': '1000',
-  };
-
-  static const Map<String, String> _defaultPrices = {
-    '93': '2.59',
-    'Diesel': '3.49',
-    '87': '3.49',
-  };
-
-  void _initializeProductControllers() {
-    for (var item in widget.notifier.inventory) {
-      if (!_gallonsControllers.containsKey(item.fuelName)) {
-        final defaultGal = _defaultGallons[item.fuelName] ?? '0.0';
-        final defaultPrice = _defaultPrices[item.fuelName] ?? '0.0';
-        _gallonsControllers[item.fuelName] = TextEditingController(text: defaultGal);
-        _priceControllers[item.fuelName] = TextEditingController(text: defaultPrice);
-      }
-    }
-  }
-
   void _submitDelivery(FuelInventoryStyles styles) async {
-    if (_formKey.currentState!.validate()) {
-      final orders = <String, Map<String, double>>{};
-      for (var item in widget.notifier.inventory) {
-        final gals = double.tryParse(_gallonsControllers[item.fuelName]?.text ?? '0') ?? 0.0;
-        final prc = double.tryParse(_priceControllers[item.fuelName]?.text ?? '0') ?? 0.0;
-        orders[item.fuelName] = {'gallons': gals, 'price': prc};
-      }
+    setState(() {
+      _statusMessage = null;
+    });
 
-      final success = await widget.notifier.postDelivery(
-        _companyController.text,
-        _deliveryIdController.text,
-        _dateController.text,
-        orders,
-      );
+    if (!_formKey.currentState!.validate()) {
+      setState(() {
+        _isSuccess = false;
+        _statusMessage = 'Please enter Company Name and Delivery ID before posting.';
+      });
+      return;
+    }
 
-      if (success && mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('Fuel delivery posted successfully!')),
-        );
+    setState(() {
+      _isSubmitting = true;
+    });
+
+    final orders = <String, Map<String, double>>{};
+    for (final fuel in _standardFuels) {
+      final gals = double.tryParse(_gallonsControllers[fuel.key]?.text ?? '0') ?? 0.0;
+      final prc = double.tryParse(_priceControllers[fuel.key]?.text ?? '0') ?? 0.0;
+      orders[fuel.key] = {'gallons': gals, 'price': prc};
+    }
+
+    final success = await widget.notifier.postDelivery(
+      _companyController.text,
+      _deliveryIdController.text,
+      _dateController.text,
+      orders,
+    );
+
+    if (!mounted) return;
+
+    setState(() {
+      _isSubmitting = false;
+      _isSuccess = success;
+      if (success) {
+        _statusMessage = 'Fuel delivery posted successfully!';
         // Reset form
         _companyController.clear();
         _deliveryIdController.clear();
         _dateController.text = DateTime.now().toString().substring(0, 10);
-        _gallonsControllers.forEach((fuelName, c) => c.text = _defaultGallons[fuelName] ?? '0.0');
-        _priceControllers.forEach((fuelName, c) => c.text = _defaultPrices[fuelName] ?? '0.0');
+        for (final fuel in _standardFuels) {
+          _gallonsControllers[fuel.key]?.text = fuel.defaultGallons;
+          _priceControllers[fuel.key]?.text = fuel.defaultPrice;
+        }
+      } else {
+        _statusMessage = 'Failed to post delivery: Backend service is unavailable.';
       }
-    }
+    });
+
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(_statusMessage!),
+        backgroundColor: success ? Colors.green : Colors.red.shade700,
+        duration: const Duration(seconds: 4),
+      ),
+    );
   }
 
   @override
   Widget build(BuildContext context) {
     final styles = FuelInventoryStyles(widget.tokens);
-    _initializeProductControllers();
 
     return ListenableBuilder(
       listenable: widget.notifier,
@@ -191,10 +244,19 @@ class _FuelInventoryViewState extends State<FuelInventoryView> {
           children: [
             Text('Current Inventory', style: styles.labelStyle),
             const SizedBox(height: 12),
-            Wrap(
-              spacing: 12,
-              runSpacing: 12,
-              children: widget.notifier.inventory.map((item) {
+            if (widget.notifier.inventory.isEmpty)
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 20),
+                child: Text(
+                  'No inventory recorded. Post a delivery below to record initial fuel stock.',
+                  style: styles.valueStyle.copyWith(color: Colors.grey, fontStyle: FontStyle.italic),
+                ),
+              )
+            else
+              Wrap(
+                spacing: 12,
+                runSpacing: 12,
+                children: widget.notifier.inventory.map((item) {
                 final percent = (item.totalGallons / 10000.0) * 100.0;
                 final bool isCompact = invCardWidth < 145;
                 return GestureDetector(
@@ -259,6 +321,14 @@ class _FuelInventoryViewState extends State<FuelInventoryView> {
               const Padding(
                 padding: EdgeInsets.all(8.0),
                 child: Text('Loading sensor status...'),
+              )
+            else if (widget.notifier.tanks.isEmpty)
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 20),
+                child: Text(
+                  'No tank telemetry available.',
+                  style: styles.valueStyle.copyWith(color: Colors.grey, fontStyle: FontStyle.italic),
+                ),
               )
             else
               Wrap(
@@ -350,6 +420,49 @@ class _FuelInventoryViewState extends State<FuelInventoryView> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text('Post Fuel Delivery', style: styles.formTitleStyle),
+            if (_statusMessage != null) ...[
+              const SizedBox(height: 12),
+              Container(
+                width: double.infinity,
+                padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+                decoration: BoxDecoration(
+                  color: _isSuccess
+                      ? const Color(0xFFE8F5E9)
+                      : const Color(0xFFFFEBEE),
+                  border: Border.all(
+                    color: _isSuccess ? Colors.green : Colors.redAccent,
+                    width: 1.2,
+                  ),
+                  borderRadius: BorderRadius.circular(6),
+                ),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Icon(
+                      _isSuccess ? Icons.check_circle : Icons.error_outline,
+                      color: _isSuccess ? Colors.green.shade700 : Colors.red.shade700,
+                      size: 20,
+                    ),
+                    const SizedBox(width: 8),
+                    Expanded(
+                      child: Text(
+                        _statusMessage!,
+                        style: TextStyle(
+                          fontSize: 12,
+                          fontWeight: FontWeight.w600,
+                          color: _isSuccess ? Colors.green.shade900 : Colors.red.shade900,
+                        ),
+                      ),
+                    ),
+                    const SizedBox(width: 4),
+                    InkWell(
+                      onTap: () => setState(() => _statusMessage = null),
+                      child: Icon(Icons.close, size: 16, color: Colors.grey.shade600),
+                    ),
+                  ],
+                ),
+              ),
+            ],
             const SizedBox(height: 16),
             TextFormField(
               controller: _companyController,
@@ -379,21 +492,21 @@ class _FuelInventoryViewState extends State<FuelInventoryView> {
             const SizedBox(height: 16),
             const Divider(),
             const SizedBox(height: 10),
-            // Product Specific Fields
+            // Product Specific Fields (Static Form)
             Column(
-              children: widget.notifier.inventory.map((item) {
+              children: _standardFuels.map((fuel) {
                 return Padding(
                   padding: const EdgeInsets.only(bottom: 12),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(item.fuelName, style: styles.labelStyle.copyWith(fontSize: 13)),
+                      Text(fuel.displayName, style: styles.labelStyle.copyWith(fontSize: 13)),
                       const SizedBox(height: 6),
                       Row(
                         children: [
                           Expanded(
                             child: TextFormField(
-                              controller: _gallonsControllers[item.fuelName],
+                              controller: _gallonsControllers[fuel.key],
                               keyboardType: TextInputType.number,
                               decoration: const InputDecoration(
                                 isDense: true,
@@ -404,7 +517,7 @@ class _FuelInventoryViewState extends State<FuelInventoryView> {
                           const SizedBox(width: 10),
                           Expanded(
                             child: TextFormField(
-                              controller: _priceControllers[item.fuelName],
+                              controller: _priceControllers[fuel.key],
                               keyboardType: TextInputType.number,
                               decoration: const InputDecoration(
                                 isDense: true,
@@ -424,13 +537,30 @@ class _FuelInventoryViewState extends State<FuelInventoryView> {
               width: double.infinity,
               height: 44,
               child: ElevatedButton(
-                onPressed: () => _submitDelivery(styles),
+                onPressed: _isSubmitting ? null : () => _submitDelivery(styles),
                 style: ElevatedButton.styleFrom(
                   backgroundColor: widget.tokens.accent,
                   foregroundColor: Colors.white,
+                  disabledBackgroundColor: widget.tokens.accent.withValues(alpha: 0.6),
                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
                 ),
-                child: const Text('Post Fuel Delivery'),
+                child: _isSubmitting
+                    ? const Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          SizedBox(
+                            width: 16,
+                            height: 16,
+                            child: CircularProgressIndicator(
+                              strokeWidth: 2,
+                              valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+                            ),
+                          ),
+                          SizedBox(width: 10),
+                          Text('Posting Delivery...'),
+                        ],
+                      )
+                    : const Text('Post Fuel Delivery'),
               ),
             ),
           ],

@@ -21,13 +21,8 @@ class ApiCatalog {
       }
       throw Exception('Failed to load fuel inventory: ${response.statusCode}');
     } catch (e) {
-      print('ApiCatalog: Using mock data for Fuel Inventory due to error: $e');
-      return [
-        {"fuelName": "Diesel Exhaust Fluid", "totalGallons": 1250.5},
-        {"fuelName": "Premium Diesel", "totalGallons": 8400.0},
-        {"fuelName": "Regular Unleaded", "totalGallons": 4200.2},
-        {"fuelName": "Biodiesel B20", "totalGallons": 2100.7}
-      ];
+      print('ApiCatalog: Error fetching fuel inventory (returning empty): $e');
+      return [];
     }
   }
 
@@ -44,34 +39,8 @@ class ApiCatalog {
       }
       throw Exception('Failed to load recent deliveries: ${response.statusCode}');
     } catch (e) {
-      print('ApiCatalog: Using mock data for Fuel Deliveries due to error: $e');
-      final allMock = [
-        {
-          "id": 36,
-          "companyName": "Texaco Transport",
-          "fuelDeliveryId": "1779151177076",
-          "deliveryDate": "2026-05-19T00:39:37.076Z",
-          "dieselGallons": 8549,
-          "dieselRetailPrice": 4.99,
-          "regularGallons": 5121,
-          "regularRetailPrice": 3.99,
-          "premiumGallons": 5143,
-          "premiumRetailPrice": 7.99
-        },
-        {
-          "id": 35,
-          "companyName": "Oil Solutions",
-          "fuelDeliveryId": "TD-20241027-001",
-          "deliveryDate": "2025-02-17T00:00:00.000Z",
-          "dieselGallons": 5100,
-          "dieselRetailPrice": 5.99,
-          "regularGallons": 1001000,
-          "regularRetailPrice": 4.99,
-          "premiumGallons": 70000,
-          "premiumRetailPrice": 7.99
-        }
-      ];
-      return allMock.take(count).toList();
+      print('ApiCatalog: Error fetching fuel deliveries (returning empty): $e');
+      return [];
     }
   }
 
@@ -89,8 +58,8 @@ class ApiCatalog {
       }
       throw Exception('Failed to post fuel delivery: ${response.statusCode}');
     } catch (e) {
-      print('ApiCatalog: Mocking successful fuel delivery post due to error: $e');
-      return true; // Simulate success in dev environment
+      print('ApiCatalog: Failed to post fuel delivery: $e');
+      return false;
     }
   }
 
@@ -119,12 +88,8 @@ class ApiCatalog {
         }
       } catch (_) {}
 
-      print('ApiCatalog: Using mock data for Tank Status due to error: $e');
-      return [
-        {"cycle": 1, "gallons": 2359.7, "percent": 23.60, "status": "OK", "tank": "Diesel Tank 4", "temp": 72.4},
-        {"cycle": 1, "gallons": 2363.4, "percent": 23.63, "status": "OK", "tank": "Diesel Tank 1", "temp": 72.6},
-        {"cycle": 1, "gallons": 2359.6, "percent": 23.60, "status": "OK", "tank": "Premium Tank 1", "temp": 72.4}
-      ];
+      print('ApiCatalog: Error fetching tank status (returning empty): $e');
+      return [];
     }
   }
 
