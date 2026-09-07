@@ -108,15 +108,6 @@ class InventoryNotifier extends ChangeNotifier {
     try {
       final raw = await ApiCatalog.getInventory(_category);
       _products = raw.map((json) => Product.fromJson(json)).toList();
-
-      // Asynchronously pre-cache and pre-resolve all images in the background
-      for (final product in _products) {
-        final provider = ResizeImage(
-          AssetImage('assets/Photos/inventory-photos/${product.skuCode}.png'),
-          width: 600,
-        );
-        provider.resolve(ImageConfiguration.empty);
-      }
     } catch (e) {
       _error = e.toString();
     } finally {
