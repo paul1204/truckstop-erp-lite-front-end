@@ -43,7 +43,7 @@ class _ParkingViewV2State extends State<ParkingViewV2> {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text('Parking Spots V2', style: styles.titleStyle),
+                      Text('Parking Spots', style: styles.titleStyle),
                       const SizedBox(height: 4),
                       Container(height: 4, width: 100, color: widget.tokens.accent),
                     ],

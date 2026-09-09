@@ -21,14 +21,11 @@ import 'package:truck_stop_erp_lite_front_end/features/inventory/inventory_view.
 
 import 'package:truck_stop_erp_lite_front_end/features/house_accounts/house_accounts_notifier.dart';
 import 'package:truck_stop_erp_lite_front_end/features/house_accounts/house_accounts_view.dart';
-import 'package:truck_stop_erp_lite_front_end/features/house_accounts/house_accounts_view_v2.dart';
 
 import 'package:truck_stop_erp_lite_front_end/features/parking/parking_notifier.dart';
-import 'package:truck_stop_erp_lite_front_end/features/parking/parking_view.dart';
 import 'package:truck_stop_erp_lite_front_end/features/parking/parking_view_v2.dart';
 
 import 'package:truck_stop_erp_lite_front_end/features/showers/showers_notifier.dart';
-import 'package:truck_stop_erp_lite_front_end/features/showers/showers_view.dart';
 import 'package:truck_stop_erp_lite_front_end/features/showers/showers_view_v2.dart';
 
 import 'package:truck_stop_erp_lite_front_end/features/about/about_view.dart';
@@ -145,11 +142,8 @@ class _AppShellState extends State<AppShell> {
     {'name': 'Black Jack', 'icon': '♠️'},
     {'name': 'Inventory', 'icon': '📦'},
     {'name': 'House Accounts', 'icon': '🏠'},
-    {'name': 'House Accounts V2', 'icon': '📇'},
-    {'name': 'Parking', 'icon': '🅿️'},
-    {'name': 'Parking V2', 'icon': '🚚'},
-    {'name': 'Showers', 'icon': '🚿'},
-    {'name': 'Showers V2', 'icon': '🧼'},
+    {'name': 'Parking Spots', 'icon': '🚚'},
+    {'name': 'Shower Units', 'icon': '🧼'},
     {'name': 'About', 'icon': 'ℹ️'},
     {'name': 'Hero Preview', 'icon': '🌟'},
     {'name': 'Bliss', 'icon': '✨'},
@@ -244,15 +238,11 @@ class _AppShellState extends State<AppShell> {
         return InventoryView(notifier: widget.inventoryNotifier, tokens: tokens);
       case 'House Accounts':
         return HouseAccountsView(notifier: widget.houseAccountsNotifier, tokens: tokens);
-      case 'House Accounts V2':
-        return HouseAccountsViewV2(notifier: widget.houseAccountsNotifier, tokens: tokens);
-      case 'Parking':
-        return ParkingView(notifier: widget.parkingNotifier, tokens: tokens);
-      case 'Parking V2':
+      case 'Parking Spots':
         return ParkingViewV2(notifier: widget.parkingNotifier, tokens: tokens);
       case 'Showers':
-        return ShowersView(notifier: widget.showersNotifier, tokens: tokens);
       case 'Showers V2':
+      case 'Shower Units':
         return ShowersViewV2(notifier: widget.showersNotifier, tokens: tokens);
       case 'About':
         return AboutView(tokens: tokens);

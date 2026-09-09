@@ -42,7 +42,7 @@ class _ShowersViewV2State extends State<ShowersViewV2> {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text('Shower Units V2', style: styles.titleStyle),
+                      Text('Shower Units', style: styles.titleStyle),
                       const SizedBox(height: 4),
                       Container(height: 4, width: 100, color: widget.tokens.accent),
                     ],
