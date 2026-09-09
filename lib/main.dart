@@ -62,13 +62,11 @@ class _TruckStopAppState extends State<TruckStopApp> {
     return ListenableBuilder(
       listenable: Listenable.merge([_profileNotifier, _themeNotifier]),
       builder: (context, _) {
-        final activeProfile = _profileNotifier.activeProfile;
-
-        // Custom Theme Mode resolving
-        ThemeMode themeMode = _themeNotifier.themeMode;
-        if (activeProfile == AppProfile.profileB) {
-          themeMode = ThemeMode.light; // B forces Redwood Light Creme theme
+        if (_profileNotifier.activeProfile != _themeNotifier.activeProfile) {
+          _profileNotifier.setProfile(_themeNotifier.activeProfile);
         }
+
+        final themeMode = _themeNotifier.themeMode;
 
         return MaterialApp(
           title: 'Truck Stop LTE ERP Store 1',
@@ -262,16 +260,9 @@ class _AppShellState extends State<AppShell> {
 
   @override
   Widget build(BuildContext context) {
-    // Resolve theme brightness based on ThemeNotifier or profile override
-    Brightness brightness = widget.themeNotifier.themeMode == ThemeMode.dark 
-        ? Brightness.dark 
-        : Brightness.light;
-    if (widget.profileNotifier.activeProfile == AppProfile.profileB) {
-      brightness = Brightness.light;
-    }
     final tokens = StyleTokens(
-      profile: widget.profileNotifier.activeProfile,
-      brightness: brightness,
+      profile: widget.themeNotifier.activeProfile,
+      brightness: widget.themeNotifier.brightness,
     );
 
     return Container(

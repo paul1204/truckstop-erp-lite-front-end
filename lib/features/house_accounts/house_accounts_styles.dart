@@ -33,14 +33,21 @@ class HouseAccountsStyles {
       );
 
   Color getStandingColor(String standing) {
-    switch (standing.toUpperCase()) {
+    final s = standing.toUpperCase().replaceAll('-', '_').replaceAll(' ', '_').trim();
+    switch (s) {
       case 'GOOD':
         return tokens.accent; // Teal color
       case 'WARNING':
         return tokens.accentOrange; // Orange color
+      case 'PAST_DUE':
       case 'DELINQUENT':
-        return tokens.accentSecondary; // Red/terracotta color
+      case 'OVERDUE':
+      case 'OVER_DUE':
+        return const Color(0xFFD32F2F); // Red
       default:
+        if (s.contains('PAST') || s.contains('DUE') || s.contains('DELINQUENT') || s.contains('HOLD') || s.contains('OVERDUE')) {
+          return const Color(0xFFD32F2F);
+        }
         return Colors.grey;
     }
   }

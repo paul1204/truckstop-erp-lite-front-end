@@ -41,9 +41,9 @@ class FuelInventoryStyles {
 
   Color tankColor(double percent) {
     if (tokens.profile == AppProfile.profileB) {
-      if (percent < 20) return tokens.accentSecondary; // Redwood Terracotta
-      if (percent < 50) return tokens.accentOrange; // Redwood Orange
-      return tokens.accent; // Redwood Teal
+      if (percent < 20) return tokens.accentSecondary; // Terracotta
+      if (percent < 50) return tokens.accentOrange; // Orange
+      return tokens.accent; // Teal
     } else {
       if (percent < 20) return Colors.red;
       if (percent < 50) return Colors.orange;

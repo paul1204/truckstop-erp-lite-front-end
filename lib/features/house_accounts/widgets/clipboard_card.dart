@@ -198,30 +198,37 @@ class ClipboardCard extends StatelessWidget {
               ),
             ),
 
-            // 2. Rubber Status Stamp (Diagonal overlay on the middle right)
+            // 2. Rubber Status Stamp (Centered across the right-side real estate)
             Positioned(
-              right: 20,
-              top: 60,
+              left: 140,
+              right: 18,
+              top: 28,
+              bottom: 48,
               child: IgnorePointer(
-                child: Transform.rotate(
-                  angle: -0.15,
-                  child: Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-                    decoration: BoxDecoration(
-                      border: Border.all(
-                        color: standingColor.withOpacity(0.55),
-                        width: 2.5,
-                      ),
-                      borderRadius: BorderRadius.circular(4),
-                    ),
-                    child: Text(
-                      stampText,
-                      style: TextStyle(
-                        fontFamily: tokens.sansFont,
-                        fontSize: 14,
-                        fontWeight: FontWeight.bold,
-                        color: standingColor.withOpacity(0.55),
-                        letterSpacing: 1.0,
+                child: Center(
+                  child: FittedBox(
+                    fit: BoxFit.scaleDown,
+                    child: Transform.rotate(
+                      angle: -0.10,
+                      child: Container(
+                        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                        decoration: BoxDecoration(
+                          border: Border.all(
+                            color: standingColor.withOpacity(0.75),
+                            width: 3.5,
+                          ),
+                          borderRadius: BorderRadius.circular(6),
+                        ),
+                        child: Text(
+                          stampText,
+                          style: TextStyle(
+                            fontFamily: tokens.sansFont,
+                            fontSize: 28,
+                            fontWeight: FontWeight.w900,
+                            color: standingColor.withOpacity(0.75),
+                            letterSpacing: 2.5,
+                          ),
+                        ),
                       ),
                     ),
                   ),
@@ -283,17 +290,6 @@ class ClipboardCard extends StatelessWidget {
   }
 
   String _getStampText(String standing) {
-    switch (standing.toUpperCase()) {
-      case 'GOOD':
-        return '✔ APPROVED';
-      case 'WARNING':
-      case 'PAST_DUE':
-        return '⚠ PAST DUE';
-      case 'DELINQUENT':
-      case 'OVER_DUE':
-        return '✘ CREDIT HOLD';
-      default:
-        return standing.toUpperCase();
-    }
+    return standing.replaceAll('_', ' ').replaceAll('-', ' ').toUpperCase().trim();
   }
 }

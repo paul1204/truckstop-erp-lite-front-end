@@ -210,7 +210,7 @@ class _FloatingBackgroundState extends State<FloatingBackground>
               ),
             ),
 
-            // 3. Ambient Color Gradients (Redwood style corner highlights)
+            // 3. Ambient Color Gradients (warm corner highlights)
             Positioned.fill(
               child: Container(
                 decoration: BoxDecoration(

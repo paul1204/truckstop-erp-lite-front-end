@@ -50,7 +50,7 @@ class PlayingCardWidget extends StatelessWidget {
   Color get _suitColor {
     final s = suit.toLowerCase();
     if (s == 'hearts' || s == 'diamonds') {
-      return const Color(0xFFC7462B); // Redwood red/terracotta
+      return const Color(0xFFC7462B); // Red/terracotta
     }
     return const Color(0xFF201E1C);
   }
