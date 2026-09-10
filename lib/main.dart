@@ -130,13 +130,13 @@ class AppShell extends StatefulWidget {
 }
 
 class _AppShellState extends State<AppShell> {
-  String _activeTab = 'Dashboard';
+  String _activeTab = 'Fuel Inventory';
 
   // Available tabs definitions
   final List<Map<String, dynamic>> _tabs = [
-    {'name': 'Dashboard', 'icon': '📊'},
-    {'name': 'Sales', 'icon': '💰'},
     {'name': 'Fuel Inventory', 'icon': '⛽'},
+    {'name': 'Sales', 'icon': '💰'},
+    {'name': 'Dashboard', 'icon': '📊'},
     {'name': 'Black Jack', 'icon': '♠️'},
     {'name': 'Inventory', 'icon': '📦'},
     {'name': 'House Accounts', 'icon': '🏠'},
@@ -247,7 +247,7 @@ class _AppShellState extends State<AppShell> {
       case 'Hero Preview':
         return HeroPreviewView(
           tokens: tokens,
-          onNavigateToApp: () => _selectTab('Dashboard'),
+          onNavigateToApp: () => _selectTab('Fuel Inventory'),
         );
       case 'Bliss':
         return const SizedBox.shrink();
